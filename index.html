@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Swiggy-clone</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600&display=swap" rel="stylesheet">
+        <style>
+
+        
+.poster-wall {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            row-gap: 20px;
+            height: 350px;
+            left: 0;
+            right: 0;
+            background-color: rgb(19, 37, 62);
+            padding: 0px 40px 0px 40px;
+            overflow: hidden;
+        }
+
+        .posters {
+            height: 235px;
+            transition: 0.3s;
+            border: 5px solid rgb(19, 37, 62);
+        }
+
+        .posters:hover {
+            transform: scale(1.1);
+            border: 5px solid white;
+        }
+
+        .posters:active {
+            transform: scale(1);
+        }
+
+        .item-tab {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+            padding: 0 20px;
+            border-bottom: 1px solid grey;
+            overflow: hidden;
+
+        }
+
+        .restaurant-count {
+            font-size: 40px;
+            font-weight: bold;
+            margin-right: 30px;
+
+        }
+
+        .sort-options {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            align-items: center;
+            width: 600px;
+            font-size: 15px;
+            color: rgb(79, 79, 79);
+        }
+
+        .sort {
+            transition: 0.3s;
+            margin-right: 20px;
+        }
+        .sort:hover {
+            color: rgb(225,125,55);
+            transform: scale(1.05)
+        }
+        .sort:active {
+            transform: scale(0.95);
+            text-decoration: underline;
+        }
+
+
+        .filters {
+            height: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 4px solid rgb(225,125,55);
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .filters:hover {
+            color: rgb(225,125,55);
+            border: 4px solid black;
+        }
+
+        .filters:active {
+            color: black;
+            transform: scale(0.95);
+        }
+
+        .filter-icon {
+            height: 30px;
+            padding-left: 7px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            column-gap: 30px;
+            row-gap: 30px;
+            padding: 20px;
+        }
+
+        @media (max-width: 800px) {
+            .menu-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            row-gap: 10px;
+            overflow: hidden;
+            
+        }
+
+
+        .restaurant-image {
+            border: 4px solid white;
+            transition: 0.2s;
+        }
+
+        .restaurant-image:hover {
+            border: 4px solid black;
+        }
+
+        .restaurant-image:active {
+            transform: scale(0.95);
+        }
+
+        .restaurant-name {
+            font-size: 17px;
+            font-weight: 500px;
+        }
+
+        .restaurant-details {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .rating1 {
+            background-color: rgb(2, 147, 2);
+            color: white;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .rating2 {
+            background-color: rgb(255, 163, 59);
+            color: white;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .bottom-bar {
+            height: 320px;
+            margin-top: 100px;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            position: relative;
+            background-color: rgb(42, 42, 42);
+        }
+        
+        .swiggy-app {
+            height: 150px;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
+
+        .copyright {
+            position: absolute;
+            top: 250px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            color: white;
+            width: 120px;
+
+        }
+
+        body {
+            font-family: Montserrat;
+            padding-top: 80px;
+            margin: 0;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0px;
+            right: 0px;
+            left: 0px;
+            height: 80px;
+            font-weight: 500;
+            background-color: white;
+            z-index: 100;
+        }
+
+        .left-section {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 30px;
+            width: 350px;
+        }
+
+        .swiggy-logo {
+            height: 50px;
+        }
+
+        .other {
+            margin-left: 20px;
+            transition: 0.3s;
+        }
+
+        .other:hover {
+            color: rgb(225, 125, 55);
+            transform: scale(1.2);
+            text-decoration: underline;
+        }
+
+        .other:active {
+            transform: scale(1);
+            color: black
+        }
+
+        .location {
+            margin-left: 30px;
+            transition: 0.5s;
+            color: rgb(108, 108, 108);
+        }
+
+        .location:hover {
+            transform: scale(1.1);
+            color: rgb(225, 125, 55);
+            transform: scale(1.1);
+        }
+
+        .location:active {
+            transform: scale(1);
+            color: black
+        }
+
+
+
+        .right-section {
+            display: flex;
+            justify-content: space-between;
+            column-gap: 20px;
+            width: 600px;
+        }
+
+        .right-option {
+            width:100%;
+            font-size: 15px;;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            transition: 0.3s;
+            padding-left: 10px;
+        }
+
+        .right-option:hover {
+            transform: scale(1.1);
+            color: rgb(225, 125, 55);
+            
+            font-weight: 700;
+        }
+
+        .right-option:active {
+            transform: scale(1);
+            color: black
+        }
+
+        .right-icon {
+            height: 20px;
+            margin-right: 10px;
+        
+        }
+
+        </style>
+    </head>
+    <body>
+        <header class="header">
+           <div class="left-section">
+                <div class="swiggy-logo">
+                    <img class="swiggy-logo" src="Icons/swiggy.jpeg">
+                </div>
+                    <div class="other">
+                    <p>Other</p>
+                </div>
+                    <div class="location">
+                    <p>&#10148 Kochi, Kerala, India</p>
+                </div>
+           </div>
+           <div class="right-section">
+                <div class="right-option">
+                    <img class="right-icon" src="Icons/search.png">
+                    <p>Search</p>
+                </div>
+                <div class="right-option">
+                    <img class="right-icon" src="Icons/offers.png">
+                    <p>Offers</p>
+                </div>
+                <div class="right-option">
+                    <img class="right-icon" src="Icons/help.png">
+                    <p>Help</p>
+                </div>
+                <div class="right-option">
+                    <img class="right-icon" src="Icons/profile.jpeg">
+                    <p>Login</p>
+                </div>
+                <div class="right-option">
+                    <img class="right-icon" src="Icons/cart.png">
+                    <p>Cart</p>
+                </div>
+           </div>
+        </header>
+        <main>
+            <div class="poster-wall">
+                <img class="posters" src="Poster/poster1.png">
+                <img class="posters" src="Poster/poster2.jpeg">
+                <img class="posters" src="Poster/poster3.jpeg">
+                <img class="posters" src="Poster/poster4.jpeg">
+            </div>
+            <div class="item-tab">
+                <div>
+                    <div class="restaurant-count">125 restaurants</div>
+                </div>
+                <div class="sort-options">
+                    <div class="sort">Relevance</div>
+                    <div class="sort">Delivery time</div>
+                    <div class="sort">Ratings</div>
+                    <div class="sort">Cost: low to high</div>
+                    <div class="sort">Cost: high to low</div>
+                </div>
+                <div class="filters">
+                    Filters
+                    <img class="filter-icon" src="Icons/filter.jpeg">
+                </div>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu">
+                    <img class="restaurant-image" src="Poster/juicy.jpeg">
+                    <div class="restaurant-name">Juicy</div>
+                    <div class="restaurant-details">
+                        <div class="rating1">&starf; 4.7</div>
+                        <div>&#183</div>
+                        <div class="other-details">25 MINS</div>
+                        <div>&#183</div>
+                        <div class="other-details">300 FOR TWO</div>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <img class="restaurant-image" src="Poster/chicking.jpeg">
+                    <div class="restaurant-name">Chicking</div>
+                    <div class="restaurant-details">
+                        <div class="rating1">&starf; 4.2</div>
+                        <div>&#183</div>
+                        <div class="other-details">15 MINS</div>
+                        <div>&#183</div>
+                        <div class="other-details">500 FOR TWO</div>
+                    </div>
+                </div>
+                
+                <div class="menu">
+                    <img class="restaurant-image" src="Poster/cafe-durbar-afc.jpeg">
+                    <div class="restaurant-name">Cafe Durbar</div>
+                    <div class="restaurant-details">
+                        <div class="rating2">&starf; 3.5</div>
+                        <div>&#183</div>
+                        <div class="other-details">30 MINS</div>
+                        <div>&#183</div>
+                        <div class="other-details">350 FOR TWO</div>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <img class="restaurant-image" src="Poster/chopstix.jpeg">
+                    <div class="restaurant-name">Chopstix</div>
+                    <div class="restaurant-details">
+                        <div class="rating1">&starf; 4.6</div>
+                        <div>&#183</div>
+                        <div class="other-details"> 24 MINS</div>
+                        <div>&#183</div>
+                        <div class="other-details">400 FOR TWO</div>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <img class="restaurant-image" src="Poster/haji-ali.jpeg">
+                    <div class="restaurant-name">Haji Ali Fresh Juices</div>
+                    <div class="restaurant-details">
+                        <div class="rating2">&starf; 3.9</div>
+                        <div>&#183</div>
+                        <div class="other-details">28 MINS</div>
+                        <div>&#183</div>
+                        <div class="other-details">250 FOR TWO</div>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <img class="restaurant-image" src="Poster/kfc.jpeg">
+                    <div class="restaurant-name">KFC</div>
+                    <div class="restaurant-details">
+                        <div class="rating1">&starf; 4.8</div>
+                        <div>&#183</div>
+                        <div class="other-details">22 MINS</div>
+                        <div>&#183</div>
+                        <div class="other-details">500 FOR TWO</div>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <img class="restaurant-image" src="Poster/khana-peena-veg.jpeg">
+                    <div class="restaurant-name">Khana Peena Pure Veg</div>
+                    <div class="restaurant-details">
+                        <div class="rating1">&starf; 4.2</div>
+                        <div>&#183</div>
+                        <div class="other-details">32 MINS</div>
+                        <div>&#183</div>
+                        <div class="other-details">450 FOR TWO</div>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <img class="restaurant-image" src="Poster/pai-dosa.jpeg">
+                    <div class="restaurant-name">Pai Brothers and 36 Varieties of Dosa</div>
+                    <div class="restaurant-details">
+                        <div class="rating2">&starf; 3.7</div>
+                        <div>&#183</div>
+                        <div class="other-details">35 MINS</div>
+                        <div>&#183</div>
+                        <div class="other-details">250 FOR TWO</div>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <img class="restaurant-image" src="Poster/rozario-bakers.jpeg">
+                    <div class="restaurant-name">Rozario Bakers and Restaurant</div>
+                    <div class="restaurant-details">
+                        <div class="rating1">&starf; 4.2</div>
+                        <div>&#183</div>
+                        <div class="other-details">41 MINS</div>
+                        <div>&#183</div>
+                        <div class="other-details">350 FOR TWO</div>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <img class="restaurant-image" src="Poster/salkara-grills.jpeg">
+                    <div class="restaurant-name">Salkara Grills</div>
+                    <div class="restaurant-details">
+                        <div class="rating1">&starf; 4.5</div>
+                        <div>&#183</div>
+                        <div class="other-details">22 MINS</div>
+                        <div>&#183</div>
+                        <div class="other-details">550 FOR TWO</div>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <img class="restaurant-image" src="Poster/salwa.jpeg">
+                    <div class="restaurant-name">Hotel Salwa</div>
+                    <div class="restaurant-details">
+                        <div class="rating2">&starf; 3.6</div>
+                        <div>&#183</div>
+                        <div class="other-details">28 MINS</div>
+                        <div>&#183</div>
+                        <div class="other-details">450 FOR TWO</div>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <img class="restaurant-image" src="Poster/snoosh-ice.jpeg">
+                    <div class="restaurant-name">Snoosh Ice Cream Parlour</div>
+                    <div class="restaurant-details">
+                        <div class="rating1">&starf; 4.8</div>
+                        <div>&#183</div>
+                        <div class="other-details">22 MINS</div>
+                        <div>&#183</div>
+                        <div class="other-details">500 FOR TWO</div>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <img class="restaurant-image" src="Poster/the-salt-restaurant.jpeg">
+                    <div class="restaurant-name">The Salt Restaurant</div>
+                    <div class="restaurant-details">
+                        <div class="rating2">&starf; 3.3</div>
+                        <div>&#183</div>
+                        <div class="other-details">44 MINS</div>
+                        <div>&#183</div>
+                        <div class="other-details">500 FOR TWO</div>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <img class="restaurant-image" src="Poster/sai-e-saravana.jpeg">
+                    <div class="restaurant-name">Sai E Saravana</div>
+                    <div class="restaurant-details">
+                        <div class="rating2">&starf; 3.7</div>
+                        <div>&#183</div>
+                        <div class="other-details">31 MINS</div>
+                        <div>&#183</div>
+                        <div class="other-details">400 FOR TWO</div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="bottom-bar">
+                <img class="swiggy-app" src="Icons/Swiggy-app.png">
+                <div class="copyright">&copy;2023 Swiggy</div>
+            </div>
+        </main>
+    </body>
+</html>
